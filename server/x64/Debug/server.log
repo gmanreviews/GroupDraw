@@ -1,0 +1,40 @@
+﻿  RakNetServer.cpp
+  main.cpp
+  Generating Code...
+RakNetServer.obj : error LNK2019: unresolved external symbol "public: __cdecl RakNet::SocketDescriptor::SocketDescriptor(unsigned short,char const *)" (??0SocketDescriptor@RakNet@@QEAA@GPEBD@Z) referenced in function "public: bool __cdecl RakNetServer::Start(unsigned short,unsigned int)" (?Start@RakNetServer@@QEAA_NGI@Z)
+RakNetServer.obj : error LNK2019: unresolved external symbol "public: __cdecl RakNet::SystemAddress::SystemAddress(void)" (??0SystemAddress@RakNet@@QEAA@XZ) referenced in function "void __cdecl RakNet::`dynamic initializer for 'UNASSIGNED_SYSTEM_ADDRESS''(void)" (??__EUNASSIGNED_SYSTEM_ADDRESS@RakNet@@YAXXZ)
+RakNetServer.obj : error LNK2019: unresolved external symbol "public: char const * __cdecl RakNet::SystemAddress::ToString(bool,char)const " (?ToString@SystemAddress@RakNet@@QEBAPEBD_ND@Z) referenced in function "public: struct RakNet::Packet * __cdecl RakNetServer::Receive(void)" (?Receive@RakNetServer@@QEAAPEAUPacket@RakNet@@XZ)
+RakNetServer.obj : error LNK2019: unresolved external symbol "public: static class RakNet::RakPeerInterface * __cdecl RakNet::RakPeerInterface::GetInstance(void)" (?GetInstance@RakPeerInterface@RakNet@@SAPEAV12@XZ) referenced in function "public: __cdecl RakNetServer::RakNetServer(void)" (??0RakNetServer@@QEAA@XZ)
+RakNetServer.obj : error LNK2019: unresolved external symbol "public: static void __cdecl RakNet::RakPeerInterface::DestroyInstance(class RakNet::RakPeerInterface *)" (?DestroyInstance@RakPeerInterface@RakNet@@SAXPEAV12@@Z) referenced in function "public: __cdecl RakNetServer::~RakNetServer(void)" (??1RakNetServer@@QEAA@XZ)
+D:\lib\RakNet-master\Lib\RakNet_VS2008_DLL_Debug_Win32.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\flac.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\freetype.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\jpeg.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\ogg.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\openal32.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\sfml-audio-d.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\sfml-audio-s-d.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\sfml-audio-s.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\sfml-audio.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\sfml-graphics-d.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\sfml-graphics-s-d.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\sfml-graphics-s.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\sfml-graphics.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\sfml-main-d.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\sfml-main.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\sfml-network-d.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\sfml-network-s-d.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\sfml-network-s.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\sfml-network.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\sfml-system-d.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\sfml-system-s-d.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\sfml-system-s.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\sfml-system.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\sfml-window-d.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\sfml-window-s-d.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\sfml-window-s.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\sfml-window.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\vorbis.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\vorbisenc.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\lib\SFML-2.4.2\lib\vorbisfile.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\projects\GroupDraw\x64\Debug\server.exe : fatal error LNK1120: 5 unresolved externals
