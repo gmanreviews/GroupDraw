@@ -1,4 +1,9 @@
 ﻿  RakNetClient.cpp
   main.cpp
   Generating Code...
+<<<<<<< HEAD
 RakNet_VS2008_DLL_Debug_Win32.lib(RakNet_VS2008_DLL_Debug_Win32.dll) : fatal error LNK1112: module machine type 'x86' conflicts with target machine type 'x64'
+=======
+  client.vcxproj -> D:\NetworkProject\GroupDraw\x64\Debug\client.exe
+  client.vcxproj -> D:\NetworkProject\GroupDraw\x64\Debug\client.pdb (Partial PDB)
+>>>>>>> b1afcfedfaa03647cd0041d76da6019e314eb1d9
