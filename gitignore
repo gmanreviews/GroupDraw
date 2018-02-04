@@ -321,3 +321,26 @@ ASALocalRun/
 # MSBuild Binary and Structured Log
 *.binlog
 
+#Specific To Projects
+
+client/[Dd]ebug/
+client/[Dd]ebugPublic/
+client/[Rr]elease/
+client/[Rr]eleases/
+client/x64/
+client/x86/
+client/bld/
+client/[Bb]in/
+client/[Oo]bj/
+client/[Ll]og/
+
+server/[Dd]ebug/
+server/[Dd]ebugPublic/
+server/[Rr]elease/
+server/[Rr]eleases/
+server/x64/
+server/x86/
+server/bld/
+server/[Bb]in/
+server/[Oo]bj/
+server/[Ll]og/
