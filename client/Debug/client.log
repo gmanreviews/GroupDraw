@@ -1,6 +1,3 @@
-﻿  RakNetClient.cpp
-  main.cpp
-  command.cpp
-  Generating Code...
+﻿  command.cpp
   client.vcxproj -> D:\projects\GroupDraw\GroupDraw\Debug\client.exe
   client.vcxproj -> D:\projects\GroupDraw\GroupDraw\Debug\client.pdb (Partial PDB)
