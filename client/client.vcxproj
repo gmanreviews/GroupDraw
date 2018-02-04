@@ -140,12 +140,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="command.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="RakNetClient.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\GroupDraw\GroupDrawMessageIdentifiers.h" />
     <ClInclude Include="..\sharedContent.h" />
+    <ClInclude Include="command.h" />
+    <ClInclude Include="parser.h" />
     <ClInclude Include="RakNetClient.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
