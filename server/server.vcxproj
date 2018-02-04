@@ -80,11 +80,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(RACKNET_INC);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SFML_INC);$(RAKNET_INC);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(RACKNET_LIB)\RakNet_VS2008_DLL_Debug_x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>flac.lib;freetype.lib;jpeg.lib;ogg.lib;openal32.lib;sfml-audio-d.lib;sfml-audio-s-d.lib;sfml-audio-s.lib;sfml-audio.lib;sfml-graphics-d.lib;sfml-graphics-s-d.lib;sfml-graphics-s.lib;sfml-graphics.lib;sfml-main-d.lib;sfml-main.lib;sfml-network-d.lib;sfml-network-s-d.lib;sfml-network-s.lib;sfml-network.lib;sfml-system-d.lib;sfml-system-s-d.lib;sfml-system-s.lib;sfml-system.lib;sfml-window-d.lib;sfml-window-s-d.lib;sfml-window-s.lib;sfml-window.lib;vorbis.lib;vorbisenc.lib;vorbisfile.lib;RakNet_VS2008_DLL_Debug_Win32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SFML_LIB);$(RAKNET_LIB);</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -92,11 +92,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(RACKNET_INC);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SFML_INC);$(RAKNET_INC);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(RACKNET_LIB)\RakNet_VS2008_DLL_Debug_x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>flac.lib;freetype.lib;jpeg.lib;ogg.lib;openal32.lib;sfml-audio-d.lib;sfml-audio-s-d.lib;sfml-audio-s.lib;sfml-audio.lib;sfml-graphics-d.lib;sfml-graphics-s-d.lib;sfml-graphics-s.lib;sfml-graphics.lib;sfml-main-d.lib;sfml-main.lib;sfml-network-d.lib;sfml-network-s-d.lib;sfml-network-s.lib;sfml-network.lib;sfml-system-d.lib;sfml-system-s-d.lib;sfml-system-s-d.pdb;sfml-system-s.lib;sfml-system.lib;sfml-window-d.lib;sfml-window-s-d.lib;sfml-window-s.lib;sfml-window.lib;vorbis.lib;vorbisenc.lib;vorbisfile.lib;RakNet_VS2008_DLL_Debug_Win32;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(SFML_LIB);$(RAKNET_LIB);$(SFML_LIB);$(RAKNET_LIB)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

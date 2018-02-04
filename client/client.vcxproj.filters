@@ -29,5 +29,8 @@
     <ClInclude Include="..\GroupDraw\GroupDrawMessageIdentifiers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\sharedContent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
