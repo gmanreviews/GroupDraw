@@ -1,19 +1,19 @@
-#include "../sharedContent.h"
-#include "RakNetClient.h"
-
-
 #include <Windows.h>
-#include <iostream>
+#include "ClientManager.h"
 
 
 int main(int argc, char **argv) {
-	RakNetClient client;
-	client.Start();
-	client.Connect(SERVER_PORT, SERVER_IP);
-	Sleep(1000);
-	client.Disconnect(true);
-	client.Shutdown(true);
-	//Make sure the server block duration is allowed to run to completion.
-	Sleep(1500);
+	bool flagConnection;
 
+	flagConnection = ClientManager::instance().InitClient();
+
+	if (flagConnection) {
+		ClientManager::instance().RunClientLoop();
+		return 0;
+	}
+	else {
+		std::cout << "Connection with server failed" << std::endl;
+		std::getchar();
+		return -1;
+	}
 }

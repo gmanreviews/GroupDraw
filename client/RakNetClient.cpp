@@ -3,11 +3,12 @@
 #include <RakPeerInterface.h>
 #include <RakSleep.h>
 #include <MessageIdentifiers.h>
+#include <BitStream.h>
 
 #include <iostream>
 
 RakNetClient::RakNetClient() 
-    : m_peer(RakNet::RakPeerInterface::GetInstance()), m_serverAddress(new RakNet::SystemAddress()), m_serverGUID(new RakNet::RakNetGUID())
+    : m_peer(RakNet::RakPeerInterface::GetInstance()), m_serverAddress(new RakNet::SystemAddress()), m_serverGUID(new RakNet::RakNetGUID()), m_stream(new RakNet::BitStream())
 {
 }
 
@@ -116,4 +117,9 @@ bool RakNetClient::IsConnected() {
         return m_peer->GetConnectionState(*m_serverGUID) == RakNet::IS_CONNECTED;
     }
     return false;
+}
+
+void RakNetClient::Send(Shared::ClientToServer dataStruct)
+{
+	m_stream->Write((char*)&dataStruct, sizeof(Shared::ClientToServer));
 }
