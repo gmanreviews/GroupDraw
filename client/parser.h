@@ -3,6 +3,8 @@
 #include <iostream>
 #include <list>
 #include <string>
+#include <sstream>
+//#include <>
 #include "command.h"
 
 
@@ -61,13 +63,22 @@ void regex_loop_code_colour(std::string& _input, command::Colour* colour)
 
 command::Colour convert_str_to_colour(std::string _colour_string)
 {
-	unsigned char a = (unsigned char)((_colour_string.substr(0, 2)).c_str());
+	std::istringstream ss(_colour_string);
+	int i;
+	ss >> std::hex >> i;
+	
+	/*unsigned char a = (unsigned char)((_colour_string.substr(0, 2)).c_str());
 	unsigned char r = (unsigned char)((_colour_string.substr(2, 2)).c_str());
 	unsigned char g = (unsigned char)((_colour_string.substr(4, 2)).c_str());
-	unsigned char b = (unsigned char)((_colour_string.substr(6, 2)).c_str());
+	unsigned char b = (unsigned char)((_colour_string.substr(6, 2)).c_str());*/
+
+	unsigned char a = i & 0xFF000000;
+	unsigned char r = i & 0x00FF0000;
+	unsigned char g = i & 0x0000FF00;
+	unsigned char b = i & 0x000000FF;
 
 	command::Colour c(r, g, b, a);
-	return command::Colour();
+	return c;
 }
 
 #pragma region
