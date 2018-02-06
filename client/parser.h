@@ -12,16 +12,16 @@
 std::string all_words = "(([a-z]+)|([A-F0-9]{8})|([1-9][0-9]*([.][0-9]*)?))";
 std::string just_words = "[a-z ]+";
 
-std::string colourr = "([0-9A-Fa-f]{8})";
+std::string colourr = "([0-9A-Fa-f]){8}";
 std::string floatr = "([0-9]+([.][0-9]+)?)";
 std::string intr = "([1-9][0-9]*)";
 std::string spacer = "[ ]+";
 
 std::string pointr = "(p(oint)?(" + spacer + floatr + "){2}" + "(" + spacer + colourr + ")?)";
 std::string liner = "(l(ine)?(" + spacer + floatr + "){4}" + "(" + spacer + colourr + ")?)";
-std::string rectr = "(r(ect)?(" + spacer + floatr + "){4}" + "(" + spacer + colourr + "){0|2})";
-std::string circler = "(c(ircle)?(" + spacer + floatr + "){3}" + "(" + spacer + colourr + "){0|2})";
-std::string triangler = "(t(riangle)?(" + spacer + floatr + "){6}" + "(" + spacer + colourr + "){0|2})";
+std::string rectr = "(r(ect)?(" + spacer + floatr + "){4}(" + spacer + colourr + "){0,2})";
+std::string circler = "(c(ircle)?(" + spacer + floatr + "){3}("  + spacer + colourr + "){0,2})";
+std::string triangler = "(t(riangle)?(" + spacer + floatr + "){6}(" + spacer + colourr + "){0,2})";
 std::string undor = "(u(ndo)?)";
 std::string deleter = "(d(elete)?" + spacer + intr + ")";
 std::string listr = "(l(ist)?" + spacer + "(s(hapes)?|c(lients)?))";
@@ -29,17 +29,26 @@ std::string getr = "(g(et)?" + spacer + intr + ")";
 
 std::string commandr = "(" + pointr
 					 + "|" + liner
-					 //+ "|" + rectr
-					 //+ "|" + circler
-					 //+ "|" + triangler
-					 //+ "|" + undor
-					 //+ "|" + deleter
-					 //+ "|" + listr
-					 //+ "|" + getr
+					 + "|" + rectr
+					 + "|" + circler
+					 + "|" + triangler
+					 + "|" + undor
+					 + "|" + deleter
+					 + "|" + listr
+					 + "|" + getr
 	+")"
 ;
 				
 #pragma endregion defining some regex
+
+//https://codereview.stackexchange.com/questions/11203/most-efficient-way-in-c-to-strip-strings
+std::string strip(std::string in) {
+	std::string final;
+	for (int i = 0; i < in.length(); i++) {
+		if (isalpha(in[i])) final += in[i];
+	}
+	return final;
+}
 
 void regex_loop_code_float(std::string& _input, float* points)
 {
@@ -288,65 +297,53 @@ command parseCommandFromText(std::string _commandInput)
 	command _output;
 	if (isInputValid(_commandInput))
 	{
-
-		
-				
 		std::regex reg_jwords(just_words);
 
 		std::smatch m; 
 		std::regex_search(_commandInput, m, reg_jwords);
 		
-		std::string first_word = m.str();
+		std::string first_word = strip(m.str());
 
-		int i = first_word.compare("point");
-		int j = first_word.compare("test");
+		int i = first_word.compare("rect");
+		//int j = first_word.compare("test");
 
-		if (first_word.compare("point") > 0 || first_word.compare("p") > 0)
+			if (first_word.compare("point") == 0 || first_word.compare("p") == 0)
 		{
 			parsePoint(_commandInput, _output);
 		}
-		else if (first_word.compare("line") > 0 || first_word.compare("l") > 0)
-		//else if (first_word == "l" || first_word == "line")
+		else if (first_word.compare("line") == 0 || first_word.compare("l") == 0)
 		{
 			parseLine(_commandInput, _output);
 		}
-		else if (first_word.compare("rect") > 0 || first_word.compare("r") > 0)
-		//else if (first_word == "r" || first_word == "rect")
+		else if (first_word.compare("rect") == 0 || first_word.compare("r") == 0)
 		{
 			parseRect(_commandInput, _output);
 		}
-		else if (first_word.compare("circle") > 0 || first_word.compare("c") > 0)
-		//else if (first_word == "c" || first_word == "circle")
+		else if (first_word.compare("circle") == 0 || first_word.compare("c") == 0)
 		{
 			parseCircle(_commandInput, _output);
 		}
-		else if (first_word.compare("triangle") > 0 || first_word.compare("t") > 0)
-		//else if (first_word == "t" || first_word == "traingle")
+		else if (first_word.compare("triangle") == 0 || first_word.compare("t") == 0)
 		{
 			parseTriangle(_commandInput, _output);
 		}
-		else if (first_word.compare("undo") > 0 || first_word.compare("u") > 0)
-		//else if (first_word == "u" || first_word == "undo")
+		else if (first_word.compare("undo") == 0 || first_word.compare("u") == 0)
 		{
 			_output.setCommandType(command::Comm::UNDO);
 		}
-		else if (first_word.compare("delete") > 0 || first_word.compare("d") > 0)
-		//else if (first_word == "d" || first_word == "delete")
+		else if (first_word.compare("delete") == 0 || first_word.compare("d") == 0)
 		{
 			parseDelete(_commandInput, _output);
 		}
-		else if (first_word.compare("list clients") > 0 || first_word.compare("l c") > 0)
-		//else if (first_word == "l c" || first_word == "list clients")
+		else if (first_word.compare("list clients") == 0 || first_word.compare("l c") == 0)
 		{
 			_output.setCommandType(command::Comm::LIST_CLIENTS);
 		}
-		else if (first_word.compare("list shapes") > 0 || first_word.compare("l s") > 0)
-		//else if (first_word == "l s" || first_word == "list shapes")
+		else if (first_word.compare("list shapes") == 0 || first_word.compare("l s") == 0)
 		{
 			_output.setCommandType(command::Comm::LIST_SHAPES);
 		}
-		else if (first_word.compare("get") > 0 || first_word.compare("g") > 0)
-		//else if (first_word == "g" || first_word == "get")
+		else if (first_word.compare("get") == 0 || first_word.compare("g") == 0)
 		{
 			parseGet(_commandInput, _output);
 		}
@@ -354,8 +351,6 @@ command parseCommandFromText(std::string _commandInput)
 		{
 			//_output.setCommandType(command::INVALID);
 		}
-		
-		
 	}
 	else
 	{
