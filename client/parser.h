@@ -17,15 +17,15 @@ std::string floatr = "([0-9]+([.][0-9]+)?)";
 std::string intr = "([1-9][0-9]*)";
 std::string spacer = "[ ]+";
 
-std::string pointr = "(p(oint)?(" + spacer + floatr + "){2}" + "(" + spacer + colourr + ")?";
+std::string pointr = "(p(oint)?(" + spacer + floatr + "){2}" + "(" + spacer + colourr + ")?)";
 std::string liner = "(l(ine)?(" + spacer + floatr + "){4}" + "(" + spacer + colourr + ")?)";
 std::string rectr = "(r(ect)?(" + spacer + floatr + "){4}" + "(" + spacer + colourr + "){0|2})";
 std::string circler = "(c(ircle)?(" + spacer + floatr + "){3}" + "(" + spacer + colourr + "){0|2})";
 std::string triangler = "(t(riangle)?(" + spacer + floatr + "){6}" + "(" + spacer + colourr + "){0|2})";
 std::string undor = "(u(ndo)?)";
-std::string deleter = "|(d(elete)?" + spacer + intr + ")";
-std::string listr = "|(l(ist)?" + spacer + "(s(hapes)?|c(lients)?))";
-std::string getr = "|(g(et)?" + spacer + intr + ")";
+std::string deleter = "(d(elete)?" + spacer + intr + ")";
+std::string listr = "(l(ist)?" + spacer + "(s(hapes)?|c(lients)?))";
+std::string getr = "(g(et)?" + spacer + intr + ")";
 
 std::string commandr = "(" + pointr
 					 + "|" + liner
@@ -36,6 +36,7 @@ std::string commandr = "(" + pointr
 					 + "|" + deleter
 					 + "|" + listr
 					 + "|" + getr
+	+")"
 ;
 				
 #pragma endregion defining some regex
@@ -274,7 +275,7 @@ void parseDelete (std::string& _input, command& _output)
 
 #pragma endregion parsing specific commands
 
-bool isInputValid(std::string& _commandInput)
+bool isInputValid(std::string _commandInput)
 {
 	bool _output;
 	std::regex command(commandr);
