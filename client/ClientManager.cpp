@@ -1,5 +1,5 @@
 #include "ClientManager.h"
-
+#include "parser.h"
 
 
 ClientManager::ClientManager() :
@@ -32,6 +32,7 @@ void ClientManager::RunClientLoop()
 			std::getline(std::cin, message);
 			std::cout << "Wii new command " << message << std::endl;
 
+			parseCommandFromText(message);
 			//	 Command line Parser could go here :D
 
 			SendCommandToServer();
