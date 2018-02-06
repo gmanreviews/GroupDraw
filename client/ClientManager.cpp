@@ -30,10 +30,8 @@ void ClientManager::RunClientLoop()
 	{
 		if (_kbhit()) {
 			std::getline(std::cin, message);
-			std::cout << "Wii new command " << message << std::endl;
 
 			parseCommandFromText(message);
-			//	 Command line Parser could go here :D
 
 			SendCommandToServer();
 		}

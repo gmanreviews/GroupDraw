@@ -29,13 +29,13 @@ std::string getr = "(g(et)?" + spacer + intr + ")";
 
 std::string commandr = "(" + pointr
 					 + "|" + liner
-					 + "|" + rectr
-					 + "|" + circler
-					 + "|" + triangler
-					 + "|" + undor
-					 + "|" + deleter
-					 + "|" + listr
-					 + "|" + getr
+					 //+ "|" + rectr
+					 //+ "|" + circler
+					 //+ "|" + triangler
+					 //+ "|" + undor
+					 //+ "|" + deleter
+					 //+ "|" + listr
+					 //+ "|" + getr
 	+")"
 ;
 				
@@ -298,43 +298,55 @@ command parseCommandFromText(std::string _commandInput)
 		
 		std::string first_word = m.str();
 
-		if (first_word == "p" || first_word == "point")
+		int i = first_word.compare("point");
+		int j = first_word.compare("test");
+
+		if (first_word.compare("point") > 0 || first_word.compare("p") > 0)
 		{
 			parsePoint(_commandInput, _output);
 		}
-		else if (first_word == "l" || first_word == "line")
+		else if (first_word.compare("line") > 0 || first_word.compare("l") > 0)
+		//else if (first_word == "l" || first_word == "line")
 		{
 			parseLine(_commandInput, _output);
 		}
-		else if (first_word == "r" || first_word == "rect")
+		else if (first_word.compare("rect") > 0 || first_word.compare("r") > 0)
+		//else if (first_word == "r" || first_word == "rect")
 		{
 			parseRect(_commandInput, _output);
 		}
-		else if (first_word == "c" || first_word == "circle")
+		else if (first_word.compare("circle") > 0 || first_word.compare("c") > 0)
+		//else if (first_word == "c" || first_word == "circle")
 		{
 			parseCircle(_commandInput, _output);
 		}
-		else if (first_word == "t" || first_word == "traingle")
+		else if (first_word.compare("triangle") > 0 || first_word.compare("t") > 0)
+		//else if (first_word == "t" || first_word == "traingle")
 		{
 			parseTriangle(_commandInput, _output);
 		}
-		else if (first_word == "u" || first_word == "undo")
+		else if (first_word.compare("undo") > 0 || first_word.compare("u") > 0)
+		//else if (first_word == "u" || first_word == "undo")
 		{
 			_output.setCommandType(command::Comm::UNDO);
 		}
-		else if (first_word == "d" || first_word == "delete")
+		else if (first_word.compare("delete") > 0 || first_word.compare("d") > 0)
+		//else if (first_word == "d" || first_word == "delete")
 		{
 			parseDelete(_commandInput, _output);
 		}
-		else if (first_word == "l c" || first_word == "list clients")
+		else if (first_word.compare("list clients") > 0 || first_word.compare("l c") > 0)
+		//else if (first_word == "l c" || first_word == "list clients")
 		{
 			_output.setCommandType(command::Comm::LIST_CLIENTS);
 		}
-		else if (first_word == "l s" || first_word == "list shapes")
+		else if (first_word.compare("list shapes") > 0 || first_word.compare("l s") > 0)
+		//else if (first_word == "l s" || first_word == "list shapes")
 		{
 			_output.setCommandType(command::Comm::LIST_SHAPES);
 		}
-		else if (first_word == "g" || first_word == "get")
+		else if (first_word.compare("get") > 0 || first_word.compare("g") > 0)
+		//else if (first_word == "g" || first_word == "get")
 		{
 			parseGet(_commandInput, _output);
 		}
