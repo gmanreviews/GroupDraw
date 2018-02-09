@@ -7,6 +7,7 @@
 #include <string>
 #include <thread>   
 
+class command;
 
 
 class ClientManager
@@ -29,7 +30,8 @@ private:
 	std::thread commandLineThread;
 	std::thread communicationThread;
 
-	void SendCommandToServer();
+	void SendCommandToServer(command cmd);
+	//void SendCommandToServer();
 
 	ClientManager();
 };

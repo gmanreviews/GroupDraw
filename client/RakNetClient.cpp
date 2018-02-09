@@ -78,7 +78,7 @@ bool RakNetClient::Connect(unsigned int port, std::string const &ip) {
     while(!done) {
         RakNet::Packet *packet = m_peer->Receive();
         if(packet != NULL) {
-            //Handle the packet.
+			RakNet::BitStream bsOut;
             unsigned char pid = packet->data[0];
             switch(pid) {
                 case ID_CONNECTION_REQUEST_ACCEPTED:
@@ -121,5 +121,8 @@ bool RakNetClient::IsConnected() {
 
 void RakNetClient::Send(Shared::ClientToServer dataStruct)
 {
-	m_stream->Write((char*)&dataStruct, sizeof(Shared::ClientToServer));
+	RakNet::BitStream bsOut;
+	bsOut.Write((RakNet::MessageID)ID_GAME_MESSAGE_1);
+	bsOut.Write(dataStruct);
+	m_peer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, *m_serverAddress, false);	
 }

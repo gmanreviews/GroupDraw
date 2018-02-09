@@ -35,6 +35,8 @@ private:
     RakNet::RakNetGUID *m_serverGUID;
     RakNet::SystemAddress *m_serverAddress;
 	RakNet::BitStream *m_stream;
+	RakNet::Packet *packet;
+	//RakNet::SystemAddress address;
 };
 
 #endif

@@ -14,12 +14,15 @@ ClientManager::~ClientManager()
 	client.Shutdown(true);
 }
 
-void ClientManager::SendCommandToServer()
+void ClientManager::SendCommandToServer(command cmd)
 {
-
 	client.Send(commandBucket);
 }
 
+//void ClientManager::SendCommandToServer()
+//{
+//	client.Send(commandBucket);
+//}
 
 void ClientManager::RunClientLoop()
 {
@@ -31,9 +34,10 @@ void ClientManager::RunClientLoop()
 		if (_kbhit()) {
 			std::getline(std::cin, message);
 
-			parseCommandFromText(message);
+			command cmd = parseCommandFromText(message);
 
-			SendCommandToServer();
+			SendCommandToServer(cmd);
+			//SendCommandToServer();
 		}
 
 		// To-Do Call render 
