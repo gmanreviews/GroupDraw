@@ -3,6 +3,7 @@
 
 #include <string>
 #include "../sharedContent.h"
+#include "command.h"
 
 namespace RakNet {
     struct Packet;
@@ -26,9 +27,15 @@ public:
     bool IsConnected();
 
     RakNet::Packet *Receive();
-    void Send(RakNet::Packet &packet);
-	void Send(Shared::ClientToServer dataStruct);
-    void DeallocatePacket(RakNet::Packet *packet);
+
+	void ListenServer();
+	void Send(Shared::NetworkCommand dataStruct, int messageType);
+
+	void SendPoint(command::Point pointStruct);
+	void SendLine(command::Line lineStruct);
+	void SendRect(command::Rect rectStruct);
+	void SendCircle(command::Circle circleStruct);
+	void SendTriangle(command::Triangle triangleStruct);
 
 private:
     RakNet::RakPeerInterface *m_peer;

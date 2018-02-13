@@ -272,7 +272,7 @@ void parseGet(std::string& _input, command& _output)
 
 void parseDelete (std::string& _input, command& _output)
 {
-	_output.setCommandType(command::Comm::DELETE);
+	_output.setCommandType(command::Comm::DELETE_SHAPE);
 
 	std::regex reg_int(intr);
 	std::smatch cm;

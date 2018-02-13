@@ -26,12 +26,15 @@ public:
 
 private:
 	RakNetClient client;
-	Shared::ClientToServer commandBucket;
+	//Shared::ClientToServer commandBucket;
 	std::thread commandLineThread;
 	std::thread communicationThread;
 
-	void SendCommandToServer(command cmd);
+	void SendDataToServer(command cmd, int messageType);
 	//void SendCommandToServer();
+	void ListenForInput();
+	void RenderShapes();
+	void ListenServer();
 
 	ClientManager();
 };

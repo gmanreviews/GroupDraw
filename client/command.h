@@ -1,4 +1,5 @@
 #pragma once
+#include <MessageIdentifiers.h>
 #include <vector>
 #include <regex>
 #include <iostream>
@@ -12,19 +13,21 @@ public:
 	enum Comm
 	{
 		//INVALID,
-		UNDO,
-		DELETE,
-		LIST_SHAPES,
-		LIST_CLIENTS,
-		GET
+		NONE = ID_USER_PACKET_ENUM + 1,
+		UNDO = ID_USER_PACKET_ENUM + 2,
+		DELETE_SHAPE = ID_USER_PACKET_ENUM + 3,
+		LIST_SHAPES = ID_USER_PACKET_ENUM + 4,
+		LIST_CLIENTS = ID_USER_PACKET_ENUM + 5,
+		GET = ID_USER_PACKET_ENUM + 6
 	};
 	enum Shapes
 	{
-		SPOINT,
-		LINE,
-		RECT,
-		CIRCLE,
-		TRIANGLE
+		NONE = ID_USER_PACKET_ENUM + 7,
+		SPOINT = ID_USER_PACKET_ENUM + 8,
+		LINE = ID_USER_PACKET_ENUM + 9,
+		RECT = ID_USER_PACKET_ENUM + 10,
+		CIRCLE = ID_USER_PACKET_ENUM + 11,
+		TRIANGLE = ID_USER_PACKET_ENUM + 12
 	};
 	struct Colour
 	{
@@ -84,9 +87,13 @@ public:
 
 	void setprops(Shapes _shape, Shape _shapedata, Comm _command);
 	void setShapeType(Shapes _shape);
+	Shapes getShapeType();
 	void setCommandType(Comm _command);
+	Comm getCommandType();
 	void setShapeData(Shape _shapedata);
+	Shape *getShapeData();
 	void setid(int _id);
+	bool isInitialized() { return _initialized; }
 
 	//void parseLine(std::string & _input);
 
@@ -96,11 +103,11 @@ private :
 	
 	//Colour convert_str_to_colour(std::string _colour_string);
 
-
+	bool _initialized = false;
 	int id;
-	Comm _commandType;
-	Shapes _shapeType;
-	Shape _definedShape;
+	Comm _commandType = command::Comm::NONE;
+	Shapes _shapeType = command::Shapes::NONE;
+	Shape *_definedShape;
 
 };
 

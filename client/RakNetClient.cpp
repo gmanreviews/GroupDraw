@@ -106,6 +106,63 @@ bool RakNetClient::Connect(unsigned int port, std::string const &ip) {
     return IsConnected();
 }
 
+void RakNetClient::ListenServer() {
+	//bool done = false;
+	//while (!done) {
+		RakNet::Packet *packet = m_peer->Receive();
+		if (packet != NULL) {
+			RakNet::BitStream bsOut;
+			unsigned char pid = packet->data[0];
+			switch (pid) {
+
+			case command::Comm::UNDO:
+				std::cout << "Got UNDO Command" << std::endl;
+				//done = true;
+				break;
+
+			case command::Comm::DELETE_SHAPE:
+				std::cout << "Got DELETE Command" << std::endl;
+				//done = true;
+				break;
+			
+			case command::Shapes::SPOINT:
+				std::cout << "Got DELETE Command" << std::endl;
+				//done = true;
+				break;
+
+			case command::Shapes::LINE:
+				std::cout << "Got Command to draw LINE" << std::endl;
+				//done = true;
+				break;
+
+			case command::Shapes::RECT:
+				std::cout << "Got Command to draw RECT" << std::endl;
+				//done = true;
+				break;
+
+			case command::Shapes::CIRCLE:
+				std::cout << "Got Command to draw CIRCLE" << std::endl;
+				//done = true;
+				break;
+
+			case command::Shapes::TRIANGLE:
+				std::cout << "Got Command to draw TRIANGLE" << std::endl;
+				//done = true;
+				break;	
+
+			default:
+				std::cerr << "Unhandled message from server " << std::endl;
+				//done = true;
+				break;
+			}
+			//Clean up the packet.
+			m_peer->DeallocatePacket(packet);
+		} 
+		//Keep things responsive.
+		//RakSleep(50);
+	//} //while(!done)
+}
+
 void RakNetClient::Disconnect(bool sendNotification) {
     if(m_peer != NULL) {
         m_peer->CloseConnection(*m_serverGUID, sendNotification, 0, HIGH_PRIORITY);
@@ -119,10 +176,42 @@ bool RakNetClient::IsConnected() {
     return false;
 }
 
-void RakNetClient::Send(Shared::ClientToServer dataStruct)
+void RakNetClient::SendPoint(command::Point pointStruct)
 {
 	RakNet::BitStream bsOut;
-	bsOut.Write((RakNet::MessageID)ID_GAME_MESSAGE_1);
-	bsOut.Write(dataStruct);
+	bsOut.Write((RakNet::MessageID)command::Shapes::SPOINT);
+	bsOut.Write(pointStruct);
 	m_peer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, *m_serverAddress, false);	
+}
+
+void RakNetClient::SendLine(command::Line lineStruct)
+{
+	RakNet::BitStream bsOut;
+	bsOut.Write((RakNet::MessageID)command::Shapes::LINE);
+	bsOut.Write(lineStruct);
+	m_peer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, *m_serverAddress, false);
+}
+
+void RakNetClient::SendRect(command::Rect rectStruct)
+{
+	RakNet::BitStream bsOut;
+	bsOut.Write((RakNet::MessageID)command::Shapes::RECT);
+	bsOut.Write(rectStruct);
+	m_peer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, *m_serverAddress, false);
+}
+
+void RakNetClient::SendCircle(command::Circle circleStruct)
+{
+	RakNet::BitStream bsOut;
+	bsOut.Write((RakNet::MessageID)command::Shapes::CIRCLE);
+	bsOut.Write(circleStruct);
+	m_peer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, *m_serverAddress, false);
+}
+
+void RakNetClient::SendTriangle(command::Triangle triangleStruct)
+{
+	RakNet::BitStream bsOut;
+	bsOut.Write((RakNet::MessageID)command::Shapes::TRIANGLE);
+	bsOut.Write(triangleStruct);
+	m_peer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, *m_serverAddress, false);
 }

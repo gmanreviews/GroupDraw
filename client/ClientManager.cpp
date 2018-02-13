@@ -14,33 +14,58 @@ ClientManager::~ClientManager()
 	client.Shutdown(true);
 }
 
-void ClientManager::SendCommandToServer(command cmd)
+void ClientManager::RenderShapes()
 {
-	client.Send(commandBucket);
+	
 }
 
-//void ClientManager::SendCommandToServer()
-//{
-//	client.Send(commandBucket);
-//}
+void ClientManager::ListenForInput()
+{
+	std::string message;
+	if (_kbhit()) {
+		std::getline(std::cin, message);
+
+		command cmd = parseCommandFromText(message);
+
+		if (cmd.isInitialized()) {
+
+			if (cmd.getCommandType != command::Comm::NONE) {
+
+			}
+			else if (cmd.getShapeType != command::Shapes::NONE) {
+				switch (cmd.getShapeType)
+				{
+				case command::Shapes::CIRCLE:
+					client.SendCircle(dynamic_cast<command::Circle*>( cmd.getShapeData() ));
+					break;
+				case command::Shapes::LINE:
+				case command::Shapes::RECT:
+				case command::Shapes::SPOINT:
+				case command::Shapes::TRIANGLE:
+				default:
+					break;
+				}
+			}
+		}
+		else {
+			std::cout << "Invalid Command" << std::endl;
+		}
+	}
+}
+
+void ClientManager::ListenServer()
+{
+	client.ListenServer();
+}
 
 void ClientManager::RunClientLoop()
 {
-	// TO-DO create threats to hande command and comunication
-
-	std::string message;
+	
 	while (true)
 	{
-		if (_kbhit()) {
-			std::getline(std::cin, message);
-
-			command cmd = parseCommandFromText(message);
-
-			SendCommandToServer(cmd);
-			//SendCommandToServer();
-		}
-
-		// To-Do Call render 
+		RenderShapes();
+		ListenForInput();
+		ListenServer();
 	}
 }
 
