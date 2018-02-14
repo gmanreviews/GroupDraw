@@ -194,10 +194,14 @@ void RakNetClient::SendLine(command::Line lineStruct)
 
 void RakNetClient::SendRect(command::Rect rectStruct)
 {
-	RakNet::BitStream bsOut;
+	/*RakNet::BitStream bsOut;
 	bsOut.Write((RakNet::MessageID)command::Shapes::RECT);
-	bsOut.Write(rectStruct);
-	m_peer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, *m_serverAddress, false);
+	bsOut.Write(rectStruct);*/
+
+	//m_peer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, *m_serverAddress, false);
+
+	const command::Rect* dataPtr = &rectStruct;
+	m_peer->Send((const char*)dataPtr, sizeof(rectStruct), HIGH_PRIORITY, RELIABLE_ORDERED, 0, *m_serverAddress, false);
 }
 
 void RakNetClient::SendCircle(command::Circle circleStruct)

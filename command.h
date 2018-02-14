@@ -5,7 +5,12 @@
 #include <iostream>
 #include <list>
 #include <string>
+#include <MessageIdentifiers.h>
 
+
+namespace RakNet {
+	unsigned char MessageID;
+}
 
 class command
 {
@@ -43,27 +48,35 @@ public:
 		Point(float _x, float _y) :
 			x(_x), y(_y) {}
 	};
-	struct Shape { };
+
+#pragma pack(push, 1)
+	struct Shape 
+	{
+		RakNet::MessageID typeId;
+		Shape(RakNet::MessageID type) : typeId(type) {}
+	};
+
 	struct SPoint : Shape
 	{
+
 		Point p;
 		Colour c;
 		SPoint(Point _p, Colour _c) :
-			p(_p), c(_c) {}
+			Shape(command::Shapes::SPOINT), p(_p), c(_c) {}
 	};
 	struct Line : Shape
 	{
 		Point sp, ep;
 		Colour c;
 		Line(Point _sp, Point _ep, Colour _c) :
-			sp(_sp), ep(_ep), c(_c) {}
+			Shape(command::Shapes::LINE), sp(_sp), ep(_ep), c(_c) {}
 	};
 	struct Rect : Shape
 	{
 		Point p1, p2;
 		Colour oc, fc;
 		Rect(Point _p1, Point _p2, Colour _oc, Colour _fc) :
-			p1(_p1), p2(_p2), oc(_oc), fc(_fc) {}
+			Shape(command::Shapes::RECT), p1(_p1), p2(_p2), oc(_oc), fc(_fc) {}
 	};
 	struct Circle : Shape
 	{
@@ -71,16 +84,16 @@ public:
 		float r;
 		Colour oc, fc;
 		Circle(Point _cx, float _r, Colour _oc, Colour _fc) :
-			cx(_cx), r(_r), oc(_oc), fc(_fc) {}
+			Shape(command::Shapes::CIRCLE), cx(_cx), r(_r), oc(_oc), fc(_fc) {}
 	};
 	struct Triangle : Shape
 	{
 		Point p1, p2, p3;
 		Colour oc, fc;
 		Triangle(Point _p1, Point _p2, Point _p3, Colour _oc, Colour _fc) :
-			p1(_p1), p2(_p2), p3(_p3), oc(_oc), fc(_fc) {}
+			Shape(command::Shapes::TRIANGLE), p1(_p1), p2(_p2), p3(_p3), oc(_oc), fc(_fc) {}
 	};
-	
+#pragma pack(pop)
 
 	command();
 	~command();
