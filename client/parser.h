@@ -5,7 +5,7 @@
 #include <string>
 #include <sstream>
 //#include <>
-#include "command.h"
+#include "../command.h"
 
 
 #pragma region

@@ -2,10 +2,13 @@
 #define RAKNET_SERVER_H
 
 #include <string>
+#include "../command.h"
+
 namespace RakNet {
     struct Packet;
     struct AddressOrGUID;
     class RakPeerInterface;
+	class BitStream;
 }
 
 class RakNetServer
@@ -24,11 +27,19 @@ public:
 
     unsigned short GetCurrentPort();
 
-    RakNet::Packet *Receive();
+    bool ListenClients(command* &cmd);
     void Send(RakNet::Packet &packet, RakNet::AddressOrGUID const &systemIdentifier, bool broadcast);
+
+	void BroadcastPoint(command::Point pointStruct);
+	void BroadcastLine(command::Line lineStruct);
+	void BroadcastRect(command::Rect rectStruct);
+	void BroadcastCircle(command::Circle circleStruct);
+	void BroadcastTriangle(command::Triangle triangleStruct);
+
     void DeallocatePacket(RakNet::Packet *packet);
 
 private:
+	RakNet::Packet *packet;
     RakNet::RakPeerInterface *m_peer;
 };
 

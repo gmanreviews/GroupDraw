@@ -140,16 +140,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\command.cpp" />
     <ClCompile Include="ClientManager.cpp" />
-    <ClCompile Include="command.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="RakNetClient.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\command.h" />
     <ClInclude Include="..\GroupDraw\GroupDrawMessageIdentifiers.h" />
     <ClInclude Include="..\sharedContent.h" />
     <ClInclude Include="ClientManager.h" />
-    <ClInclude Include="command.h" />
     <ClInclude Include="parser.h" />
     <ClInclude Include="RakNetClient.h" />
   </ItemGroup>

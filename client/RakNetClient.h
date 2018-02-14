@@ -3,7 +3,7 @@
 
 #include <string>
 #include "../sharedContent.h"
-#include "command.h"
+#include "../command.h"
 
 namespace RakNet {
     struct Packet;

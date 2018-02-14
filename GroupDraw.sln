@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "server", "server\server.vcxproj", "{611E930E-F830-4D75-A803-E67586946746}"
 EndProject
@@ -9,8 +9,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "client", "client\client.vcx
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{66E51D59-A1F6-483F-BBA1-A69F1086EE06}"
 	ProjectSection(SolutionItems) = preProject
-		client\command.cpp = client\command.cpp
-		client\command.h = client\command.h
+		command.cpp = command.cpp
+		command.h = command.h
+		InMemoryDB.h = InMemoryDB.h
 		sharedContent.h = sharedContent.h
 	EndProjectSection
 EndProject

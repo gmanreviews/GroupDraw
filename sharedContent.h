@@ -13,6 +13,7 @@
 
 namespace Shared {
 	int const SERVER_PORT = 1288;
+	int const MAX_SERVER_CONNECTIONS = 10;
 	std::string const SERVER_IP = "169.254.80.80"; //fernando
 	//std::string const SERVER_IP = "142.55.42.69";
 	std::string const LOCAL_SERVER_IP = "127.0.0.1";

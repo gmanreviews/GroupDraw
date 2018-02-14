@@ -29,19 +29,27 @@ void ClientManager::ListenForInput()
 
 		if (cmd.isInitialized()) {
 
-			if (cmd.getCommandType != command::Comm::NONE) {
+			if (cmd.getCommandType() != command::Comm::NONE) {
 
 			}
-			else if (cmd.getShapeType != command::Shapes::NONE) {
-				switch (cmd.getShapeType)
+			else if (cmd.getShapeType() != command::Shapes::NONE_SHAPE) {
+				switch (cmd.getShapeType())
 				{
 				case command::Shapes::CIRCLE:
-					client.SendCircle(dynamic_cast<command::Circle*>( cmd.getShapeData() ));
+					client.SendCircle(*(command::Circle*)cmd.getShapeData());
 					break;
 				case command::Shapes::LINE:
+					client.SendLine(*(command::Line*)cmd.getShapeData());
+					break;
 				case command::Shapes::RECT:
+					client.SendRect(*(command::Rect*)cmd.getShapeData());
+					break;
 				case command::Shapes::SPOINT:
+					client.SendPoint(*(command::Point*)cmd.getShapeData());
+					break;
 				case command::Shapes::TRIANGLE:
+					client.SendTriangle(*(command::Triangle*)cmd.getShapeData());
+					break;
 				default:
 					break;
 				}

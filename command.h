@@ -22,7 +22,7 @@ public:
 	};
 	enum Shapes
 	{
-		NONE = ID_USER_PACKET_ENUM + 7,
+		NONE_SHAPE = ID_USER_PACKET_ENUM + 7,
 		SPOINT = ID_USER_PACKET_ENUM + 8,
 		LINE = ID_USER_PACKET_ENUM + 9,
 		RECT = ID_USER_PACKET_ENUM + 10,
@@ -106,7 +106,7 @@ private :
 	bool _initialized = false;
 	int id;
 	Comm _commandType = command::Comm::NONE;
-	Shapes _shapeType = command::Shapes::NONE;
+	Shapes _shapeType = command::Shapes::NONE_SHAPE;
 	Shape *_definedShape;
 
 };
