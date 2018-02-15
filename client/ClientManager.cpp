@@ -36,19 +36,19 @@ void ClientManager::ListenForInput()
 				switch (cmd.getShapeType())
 				{
 				case command::Shapes::CIRCLE:
-					client.SendCircle(*(command::Circle*)cmd.getShapeData());
+					client.SendCircle(cmd.getShapeData());
 					break;
 				case command::Shapes::LINE:
-					client.SendLine(*(command::Line*)cmd.getShapeData());
+					client.SendLine(cmd.getShapeData());
 					break;
 				case command::Shapes::RECT:
-					client.SendRect(*(command::Rect*)cmd.getShapeData());
+					client.SendRect(cmd.getShapeData());
 					break;
 				case command::Shapes::SPOINT:
-					client.SendPoint(*(command::Point*)cmd.getShapeData());
+					client.SendPoint(cmd.getShapeData());
 					break;
 				case command::Shapes::TRIANGLE:
-					client.SendTriangle(*(command::Triangle*)cmd.getShapeData());
+					client.SendTriangle(cmd.getShapeData());
 					break;
 				default:
 					break;

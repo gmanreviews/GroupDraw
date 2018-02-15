@@ -55,9 +55,9 @@ void command::setCommandType(Comm _command)
 	_initialized = true;
 }
 
-void command::setShapeData(Shape _shapedata)
+void command::setShapeData(Shape* _shapedata)
 {
-	_definedShape = &_shapedata;
+	_definedShape = _shapedata;
 	_initialized = true;
 }
 

@@ -176,46 +176,32 @@ bool RakNetClient::IsConnected() {
     return false;
 }
 
-void RakNetClient::SendPoint(command::Point pointStruct)
+void RakNetClient::SendPoint(command::Shape* pointStruct)
 {
-	RakNet::BitStream bsOut;
-	bsOut.Write((RakNet::MessageID)command::Shapes::SPOINT);
-	bsOut.Write(pointStruct);
-	m_peer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, *m_serverAddress, false);	
+	command::Point point = *(command::Point*)pointStruct;
+	m_peer->Send((const char*)&point, sizeof(point), HIGH_PRIORITY, RELIABLE_ORDERED, 0, *m_serverAddress, false);
 }
 
-void RakNetClient::SendLine(command::Line lineStruct)
+void RakNetClient::SendLine(command::Shape* lineStruct)
 {
-	RakNet::BitStream bsOut;
-	bsOut.Write((RakNet::MessageID)command::Shapes::LINE);
-	bsOut.Write(lineStruct);
-	m_peer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, *m_serverAddress, false);
+	command::Line line = *(command::Line*)lineStruct;
+	m_peer->Send((const char*)&line, sizeof(line), HIGH_PRIORITY, RELIABLE_ORDERED, 0, *m_serverAddress, false);
 }
 
-void RakNetClient::SendRect(command::Rect rectStruct)
+void RakNetClient::SendRect(command::Shape* rectStruct)
 {
-	/*RakNet::BitStream bsOut;
-	bsOut.Write((RakNet::MessageID)command::Shapes::RECT);
-	bsOut.Write(rectStruct);*/
-
-	//m_peer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, *m_serverAddress, false);
-
-	const command::Rect* dataPtr = &rectStruct;
-	m_peer->Send((const char*)dataPtr, sizeof(rectStruct), HIGH_PRIORITY, RELIABLE_ORDERED, 0, *m_serverAddress, false);
+	command::Rect rect = *(command::Rect*)rectStruct;
+	m_peer->Send((const char*)&rect, sizeof(rect), HIGH_PRIORITY, RELIABLE_ORDERED, 0, *m_serverAddress, false);
 }
 
-void RakNetClient::SendCircle(command::Circle circleStruct)
+void RakNetClient::SendCircle(command::Shape* circleStruct)
 {
-	RakNet::BitStream bsOut;
-	bsOut.Write((RakNet::MessageID)command::Shapes::CIRCLE);
-	bsOut.Write(circleStruct);
-	m_peer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, *m_serverAddress, false);
+	command::Circle circle = *(command::Circle*)circleStruct;
+	m_peer->Send((const char*)&circle, sizeof(circle), HIGH_PRIORITY, RELIABLE_ORDERED, 0, *m_serverAddress, false);
 }
 
-void RakNetClient::SendTriangle(command::Triangle triangleStruct)
+void RakNetClient::SendTriangle(command::Shape* triangleStruct)
 {
-	RakNet::BitStream bsOut;
-	bsOut.Write((RakNet::MessageID)command::Shapes::TRIANGLE);
-	bsOut.Write(triangleStruct);
-	m_peer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, *m_serverAddress, false);
+	command::Triangle triangle = *(command::Triangle*)triangleStruct;
+	m_peer->Send((const char*)&triangle, sizeof(triangle), HIGH_PRIORITY, RELIABLE_ORDERED, 0, *m_serverAddress, false);
 }

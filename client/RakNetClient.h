@@ -31,11 +31,11 @@ public:
 	void ListenServer();
 	void Send(Shared::NetworkCommand dataStruct, int messageType);
 
-	void SendPoint(command::Point pointStruct);
-	void SendLine(command::Line lineStruct);
-	void SendRect(command::Rect rectStruct);
-	void SendCircle(command::Circle circleStruct);
-	void SendTriangle(command::Triangle triangleStruct);
+	void SendPoint(command::Shape* pointStruct);
+	void SendLine(command::Shape* lineStruct);
+	void SendRect(command::Shape* rectStruct);
+	void SendCircle(command::Shape* circleStruct);
+	void SendTriangle(command::Shape* triangleStruct);
 
 private:
     RakNet::RakPeerInterface *m_peer;

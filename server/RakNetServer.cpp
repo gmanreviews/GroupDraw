@@ -56,6 +56,13 @@ bool RakNetServer::IsActive() {
 }
 
 bool RakNetServer::ListenClients(command* &cmd) {
+	
+	command::Rect* rect;
+	command::SPoint* point;
+	command::Triangle* triangle;
+	command::Line* line;
+	command::Circle* circle;
+
 	packet = m_peer->Receive();
     if(packet != NULL) {
         unsigned char pid = packet->data[0];
@@ -107,26 +114,31 @@ bool RakNetServer::ListenClients(command* &cmd) {
 
 			case command::Shapes::CIRCLE:
 				std::cout << "command to draw CIRCLE" << std::endl;
+				circle = (command::Circle*) packet->data;
 				cmd = new command();
 				break;
 
 			case command::Shapes::LINE:
 				std::cout << "command to draw LINE" << std::endl;
+				line = (command::Line*) packet->data;
 				cmd = new command();
 				break;
 
 			case command::Shapes::RECT:
 				std::cout << "command to draw RECT" << std::endl;
+				rect = (command::Rect*) packet->data;
 				cmd = new command();
 				break;
 
 			case command::Shapes::SPOINT:
 				std::cout << "command to draw POINT" << std::endl;
+				point = (command::SPoint*) packet->data;
 				cmd = new command();
 				break;
 
 			case command::Shapes::TRIANGLE:
 				std::cout << "command to draw TRIANGLE" << std::endl;
+				triangle = (command::Triangle*) packet->data;
 				cmd = new command();
 				break;
 

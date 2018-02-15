@@ -4,6 +4,7 @@
 #include <list>
 #include <string>
 #include <sstream>
+//#include <memory>
 //#include <>
 #include "../command.h"
 
@@ -117,7 +118,7 @@ void parseLine(std::string & _input, command& _output)
 	command::Point p2(points[2], points[3]);
 	command::Colour c;// = convert_str_to_colour(colour);
 	command::Line l(p1, p2, c);
-	_output.setShapeData(l);
+//	_output.setShapeData(l);
 }
 
 void parsePoint(std::string& _input, command& _output)
@@ -153,7 +154,7 @@ void parsePoint(std::string& _input, command& _output)
 
 	command::Point p1(points[0], points[1]);
 	command::SPoint sp(p1, c);
-	_output.setShapeData(sp);
+//	_output.setShapeData(sp);
 }
 
 void parseRect(std::string& _input, command& _output)
@@ -186,8 +187,8 @@ void parseRect(std::string& _input, command& _output)
 	command::Point p1(points[0], points[1]);
 	command::Point p2(points[2], points[3]);
 
-	command::Rect r(p1, p2, colours[0], colours[1]);
-	_output.setShapeData(r);
+	command::Rect* r = new command::Rect(p1, p2, colours[0], colours[1]);
+	_output.setShapeData((command::Shape*) r);
 }
 
 void parseCircle(std::string& _input, command& _output)
@@ -220,7 +221,7 @@ void parseCircle(std::string& _input, command& _output)
 	command::Point p1(points[0], points[1]);
 	
 	command::Circle c(p1, points[2], colours[0], colours[1]);
-	_output.setShapeData(c);
+	//_output.setShapeData(c);
 }
 
 void parseTriangle(std::string& _input, command& _output)
@@ -255,7 +256,7 @@ void parseTriangle(std::string& _input, command& _output)
 	command::Point p3(points[4], points[5]);
 
 	command::Triangle t(p1, p2, p3, colours[0], colours[1]);
-	_output.setShapeData(t);
+	//_output.setShapeData(t);
 }
 
 void parseGet(std::string& _input, command& _output)

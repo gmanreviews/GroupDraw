@@ -6,11 +6,12 @@
 #include <list>
 #include <string>
 #include <MessageIdentifiers.h>
+//#include <memory>
 
 
-namespace RakNet {
-	unsigned char MessageID;
-}
+//namespace RakNet {
+//	unsigned char MessageID;
+//}
 
 class command
 {
@@ -52,8 +53,8 @@ public:
 #pragma pack(push, 1)
 	struct Shape 
 	{
-		RakNet::MessageID typeId;
-		Shape(RakNet::MessageID type) : typeId(type) {}
+		Shapes typeId;
+		Shape(Shapes type) : typeId(type) {}
 	};
 
 	struct SPoint : Shape
@@ -103,7 +104,7 @@ public:
 	Shapes getShapeType();
 	void setCommandType(Comm _command);
 	Comm getCommandType();
-	void setShapeData(Shape _shapedata);
+	void setShapeData(Shape* _shapedata);
 	Shape *getShapeData();
 	void setid(int _id);
 	bool isInitialized() { return _initialized; }
