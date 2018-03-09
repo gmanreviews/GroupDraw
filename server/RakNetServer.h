@@ -2,6 +2,7 @@
 #define RAKNET_SERVER_H
 
 #include <string>
+#include <RakNetTypes.h>
 #include "../command.h"
 
 namespace RakNet {
@@ -27,12 +28,12 @@ public:
 
     unsigned short GetCurrentPort();
 
-    bool ListenClients(command* &cmd);
+    bool ListenClients(command* &cmd, RakNet::RakNetGUID &clientId);
     void Send(RakNet::Packet &packet, RakNet::AddressOrGUID const &systemIdentifier, bool broadcast);
 
 	void BroadcastPoint(command::Point pointStruct);
 	void BroadcastLine(command::Line lineStruct);
-	void BroadcastRect(command::Rect rectStruct);
+	void BroadcastRect(command::Rect rectStruct, RakNet::RakNetGUID guid);
 	void BroadcastCircle(command::Circle circleStruct);
 	void BroadcastTriangle(command::Triangle triangleStruct);
 

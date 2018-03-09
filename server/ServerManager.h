@@ -1,5 +1,6 @@
 #pragma once
 #include "../sharedContent.h"
+#include "../InMemoryDB.h"
 #include "RakNetServer.h"
 #include <RakSleep.h>
 #include <iostream>
@@ -24,7 +25,7 @@ public:
 private:
 	RakNetServer server;
 
-	void BroadcastDataToClients(command cmd, int messageType);
+	void BroadcastDataToClients(InMemoryDB::Register* reg);
 	void SendDataToClient();
 	void ListenClients();
 

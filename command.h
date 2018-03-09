@@ -97,6 +97,13 @@ public:
 #pragma pack(pop)
 
 	command();
+
+	command(SPoint);
+	command(Line);
+	command(Rect);
+	command(Circle);
+	command(Triangle);
+
 	~command();
 
 	void setprops(Shapes _shape, Shape _shapedata, Comm _command);
@@ -106,7 +113,8 @@ public:
 	Comm getCommandType();
 	void setShapeData(Shape* _shapedata);
 	Shape *getShapeData();
-	void setid(int _id);
+	void setId(int _id);
+	int getId() { return id; }
 	bool isInitialized() { return _initialized; }
 
 	//void parseLine(std::string & _input);

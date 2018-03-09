@@ -111,8 +111,10 @@ void RakNetClient::ListenServer() {
 	//while (!done) {
 		RakNet::Packet *packet = m_peer->Receive();
 		if (packet != NULL) {
-			RakNet::BitStream bsOut;
-			unsigned char pid = packet->data[0];
+			RakNet::BitStream bsIn(packet->data, packet->length, false);
+			//unsigned char pid = packet->data[0];
+			unsigned char pid;
+			bsIn.Read(pid);
 			switch (pid) {
 
 			case command::Comm::UNDO:
@@ -136,6 +138,10 @@ void RakNetClient::ListenServer() {
 				break;
 
 			case command::Shapes::RECT:
+
+				/*command::Rect* rect;
+				bsIn.Read(*rect);*/
+
 				std::cout << "Got Command to draw RECT" << std::endl;
 				//done = true;
 				break;

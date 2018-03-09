@@ -1,5 +1,5 @@
 #include "ServerManager.h"
-
+#include "../InMemoryDB.h"
 
 ServerManager::ServerManager() :
 	server(RakNetServer())
@@ -12,24 +12,24 @@ ServerManager::~ServerManager()
 	server.Shutdown(10);
 }
 
-void ServerManager::BroadcastDataToClients(command cmd, int messageType)
+void ServerManager::BroadcastDataToClients(InMemoryDB::Register* reg)
 {
-	switch (messageType)
+	switch (reg->cmd->getShapeType())
 	{
 	case command::Shapes::CIRCLE:
-		server.BroadcastCircle(*(command::Circle*)cmd.getShapeData());
+		server.BroadcastCircle(*(command::Circle*)reg->cmd->getShapeData());
 		break;
 	case command::Shapes::LINE:
-		server.BroadcastLine(*(command::Line*)cmd.getShapeData());
+		server.BroadcastLine(*(command::Line*)reg->cmd->getShapeData());
 		break;
 	case command::Shapes::RECT:
-		server.BroadcastRect(*(command::Rect*)cmd.getShapeData());
+		server.BroadcastRect(*(command::Rect*)reg->cmd->getShapeData(), reg->guid);
 		break;
 	case command::Shapes::SPOINT:
-		server.BroadcastPoint(*(command::Point*)cmd.getShapeData());
+		server.BroadcastPoint(*(command::Point*)reg->cmd->getShapeData());
 		break;
 	case command::Shapes::TRIANGLE:
-		server.BroadcastTriangle(*(command::Triangle*)cmd.getShapeData());
+		server.BroadcastTriangle(*(command::Triangle*)reg->cmd->getShapeData());
 		break;
 
 	default:
@@ -40,14 +40,16 @@ void ServerManager::BroadcastDataToClients(command cmd, int messageType)
 void ServerManager::ListenClients()
 {
 	command *cmd;
+	RakNet::RakNetGUID guid;
+	InMemoryDB::Register* reg;
 
-	bool clientEvent = server.ListenClients(cmd);
+	bool clientEvent = server.ListenClients(cmd, guid);
 
 	if (clientEvent) {
 		if (cmd != NULL) {
 			if (cmd->getShapeType() != command::Shapes::NONE_SHAPE) {
-				// Store command on in memmory DB
-				ServerManager::BroadcastDataToClients(*cmd, cmd->getShapeType());
+				reg = InMemoryDB::instance().SaveCommandServer(cmd, guid);
+				ServerManager::BroadcastDataToClients(reg);
 			}
 		}
 	}

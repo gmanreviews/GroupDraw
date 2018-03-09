@@ -30,8 +30,9 @@ private:
 	std::thread commandLineThread;
 	std::thread communicationThread;
 
-	void SendDataToServer(command cmd, int messageType);
+	//void SendDataToServer(command cmd, int messageType);
 	//void SendCommandToServer();
+
 	void ListenForInput();
 	void RenderShapes();
 	void ListenServer();

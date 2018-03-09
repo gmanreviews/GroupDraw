@@ -55,7 +55,7 @@ bool RakNetServer::IsActive() {
     return m_peer != NULL ? m_peer->IsActive() : false;
 }
 
-bool RakNetServer::ListenClients(command* &cmd) {
+bool RakNetServer::ListenClients(command* &cmd, RakNet::RakNetGUID &clientId) {
 	
 	command::Rect* rect;
 	command::SPoint* point;
@@ -66,6 +66,7 @@ bool RakNetServer::ListenClients(command* &cmd) {
 	packet = m_peer->Receive();
     if(packet != NULL) {
         unsigned char pid = packet->data[0];
+		clientId = packet->guid;
         switch(pid) {
             case ID_NEW_INCOMING_CONNECTION:
                 std::cout << "Incoming connection from " << packet->systemAddress.ToString() << std::endl;
@@ -115,31 +116,31 @@ bool RakNetServer::ListenClients(command* &cmd) {
 			case command::Shapes::CIRCLE:
 				std::cout << "command to draw CIRCLE" << std::endl;
 				circle = (command::Circle*) packet->data;
-				cmd = new command();
+				cmd = new command(*circle);
 				break;
 
 			case command::Shapes::LINE:
 				std::cout << "command to draw LINE" << std::endl;
 				line = (command::Line*) packet->data;
-				cmd = new command();
+				cmd = new command(*line);
 				break;
 
 			case command::Shapes::RECT:
 				std::cout << "command to draw RECT" << std::endl;
 				rect = (command::Rect*) packet->data;
-				cmd = new command();
+				cmd = new command(*rect);
 				break;
 
 			case command::Shapes::SPOINT:
 				std::cout << "command to draw POINT" << std::endl;
 				point = (command::SPoint*) packet->data;
-				cmd = new command();
+				cmd = new command(*point);
 				break;
 
 			case command::Shapes::TRIANGLE:
 				std::cout << "command to draw TRIANGLE" << std::endl;
 				triangle = (command::Triangle*) packet->data;
-				cmd = new command();
+				cmd = new command(*triangle);
 				break;
 
             default:
@@ -175,11 +176,12 @@ void RakNetServer::BroadcastLine(command::Line lineStruct)
 	m_peer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 }
 
-void RakNetServer::BroadcastRect(command::Rect rectStruct)
+void RakNetServer::BroadcastRect(command::Rect rectStruct, RakNet::RakNetGUID guid)
 {
 	RakNet::BitStream bsOut;
 	bsOut.Write((RakNet::MessageID)command::Shapes::RECT);
 	bsOut.Write(rectStruct);
+	bsOut.Write(guid);
 	m_peer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 }
 

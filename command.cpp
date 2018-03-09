@@ -6,9 +6,71 @@ command::command()
 {
 }
 
+command::command(SPoint point)
+{
+	_shapeType = Shapes::SPOINT;
+	_definedShape = new SPoint(Point(point.p.x, point.p.y), Colour(point.c.r, point.c.g, point.c.b, point.c.a));
+	_commandType = Comm::NONE;
+	_initialized = true;
+}
+
+command::command(Line line)
+{
+	_shapeType = Shapes::LINE;
+	_definedShape = new Line(
+		Point(line.sp.x, line.sp.y),
+		Point(line.ep.x, line.ep.y),
+		Colour(line.c.r, line.c.g, line.c.b, line.c.a)
+	);
+	_commandType = Comm::NONE;
+	_initialized = true;
+}
+
+command::command(Rect rect)
+{
+	_shapeType = Shapes::RECT;
+	_definedShape = new Rect(
+		Point(rect.p1.x, rect.p1.y),
+		Point(rect.p2.x, rect.p2.y),
+		Colour(rect.oc.r, rect.oc.g, rect.oc.b, rect.oc.a),
+		Colour(rect.fc.r, rect.fc.g, rect.fc.b, rect.fc.a)
+	);
+	_commandType = Comm::NONE;
+	_initialized = true;
+}
+
+command::command(Circle circle)
+{
+	_shapeType = Shapes::CIRCLE;
+	_definedShape = new Circle(
+		Point(circle.cx.x, circle.cx.y),
+		circle.r,
+		Colour(circle.oc.r, circle.oc.g, circle.oc.b, circle.oc.a),
+		Colour(circle.fc.r, circle.fc.g, circle.fc.b, circle.fc.a)
+	);
+	_commandType = Comm::NONE;
+	_initialized = true;
+}
+
+command::command(Triangle triangle)
+{
+	_shapeType = Shapes::TRIANGLE;
+	_definedShape = new Triangle(
+		Point(triangle.p1.x, triangle.p1.y),
+		Point(triangle.p2.x, triangle.p2.y),
+		Point(triangle.p3.x, triangle.p3.y),
+		Colour(triangle.oc.r, triangle.oc.g, triangle.oc.b, triangle.oc.a),
+		Colour(triangle.fc.r, triangle.fc.g, triangle.fc.b, triangle.fc.a)
+	);
+	_commandType = Comm::NONE;
+	_initialized = true;
+}
 
 command::~command()
 {
+	// REFACTOR NEEDED: Copy constructor or smart pointer is needed to implment proper memmory managment
+	/*delete _definedShape;
+	_definedShape = NULL;*/
 }
 
 void command::execute()
@@ -61,7 +123,7 @@ void command::setShapeData(Shape* _shapedata)
 	_initialized = true;
 }
 
-void command::setid(int _id)
+void command::setId(int _id)
 {
 	id = _id;
 	_initialized = true;

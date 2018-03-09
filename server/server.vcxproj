@@ -133,12 +133,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\command.cpp" />
+    <ClCompile Include="..\InMemoryDB.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="RakNetServer.cpp" />
     <ClCompile Include="ServerManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\command.h" />
+    <ClInclude Include="..\InMemoryDB.h" />
     <ClInclude Include="..\sharedContent.h" />
     <ClInclude Include="RakNetServer.h" />
     <ClInclude Include="ServerManager.h" />
