@@ -4,8 +4,8 @@
 #include <list>
 #include <string>
 #include <sstream>
-//#include <memory>
-//#include <>
+#include <stdio.h>
+#include <ctype.h>
 #include "../command.h"
 
 
@@ -268,7 +268,7 @@ void parseGet(std::string& _input, command& _output)
 	std::regex_search(_input, cm, reg_int);
 	int id  = std::stoi(cm.str());
 
-	_output.setid(id);
+	_output.setId(id);
 }
 
 void parseDelete (std::string& _input, command& _output)
@@ -280,7 +280,7 @@ void parseDelete (std::string& _input, command& _output)
 	std::regex_search(_input, cm, reg_int);
 	int id = std::stoi(cm.str());
 
-	_output.setid(id);
+	_output.setId(id);
 }
 
 #pragma endregion parsing specific commands
