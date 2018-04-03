@@ -73,6 +73,16 @@ command::~command()
 	_definedShape = NULL;*/
 }
 
+void command::draw()
+{
+	switch (_shapeType)
+	{
+	
+	default:
+		break;
+	}
+}
+
 void command::execute()
 {
 	switch (_commandType) 

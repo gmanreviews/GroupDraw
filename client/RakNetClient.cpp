@@ -109,6 +109,7 @@ bool RakNetClient::Connect(unsigned int port, std::string const &ip) {
 void RakNetClient::ListenServer() {
 	//bool done = false;
 	//while (!done) {
+		command* cmd = new command();
 		RakNet::Packet *packet = m_peer->Receive();
 		if (packet != NULL) {
 			RakNet::BitStream bsIn(packet->data, packet->length, false);
@@ -133,27 +134,39 @@ void RakNetClient::ListenServer() {
 				break;
 
 			case command::Shapes::LINE:
+			{
 				std::cout << "Got Command to draw LINE" << std::endl;
 				//done = true;
+			}
 				break;
 
 			case command::Shapes::RECT:
-
-				/*command::Rect* rect;
-				bsIn.Read(*rect);*/
+			{
+				//command::Rect* rect = new command::Shape(command::Shape::RECT);
+				command::Rect* rect = (command::Rect*)packet->data;
+				bsIn.Read(*rect);
+				cmd->setShapeData(rect);
+				cmd->draw();
+				//command::execute();
+				
 
 				std::cout << "Got Command to draw RECT" << std::endl;
 				//done = true;
+			}
 				break;
-
+		
 			case command::Shapes::CIRCLE:
+			{
 				std::cout << "Got Command to draw CIRCLE" << std::endl;
 				//done = true;
+			}
 				break;
 
 			case command::Shapes::TRIANGLE:
+			{
 				std::cout << "Got Command to draw TRIANGLE" << std::endl;
 				//done = true;
+			}
 				break;	
 
 			default:
@@ -164,6 +177,9 @@ void RakNetClient::ListenServer() {
 			//Clean up the packet.
 			m_peer->DeallocatePacket(packet);
 		} 
+
+
+		delete(cmd);
 		//Keep things responsive.
 		//RakSleep(50);
 	//} //while(!done)
