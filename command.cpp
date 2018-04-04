@@ -86,7 +86,8 @@ void command::draw(sf::RenderWindow* window)
 	{
 	case command::Shapes::RECT:
 		{
-			sf::RectangleShape rect;
+			sf::RectangleShape sfmlrect;
+			//rect = _definedShape;
 			//HOW DO I FORCE IT TO KNOW IT"S A RECT AND NOT A SHAPE
 			
 			//rect =  (command::RECT*) _definedShape;

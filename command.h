@@ -76,7 +76,6 @@ public:
 	{
 		Point p1, p2;
 		Colour oc, fc;
-		//Rect(): Shape(command::Shape::RECT) {}
 		Rect(Point _p1, Point _p2, Colour _oc, Colour _fc) :
 			Shape(command::Shapes::RECT), p1(_p1), p2(_p2), oc(_oc), fc(_fc) {}
 	};
