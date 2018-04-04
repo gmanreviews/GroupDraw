@@ -6,9 +6,8 @@
 #include <list>
 #include <string>
 #include <MessageIdentifiers.h>
-//#include "SFML\Graphics.hpp"
+#include "SFML\Graphics.hpp"
 #include "SFML\Graphics\RectangleShape.hpp"
-//#include <memory>
 
 
 //namespace RakNet {
@@ -73,7 +72,7 @@ public:
 		Line(Point _sp, Point _ep, Colour _c) :
 			Shape(command::Shapes::LINE), sp(_sp), ep(_ep), c(_c) {}
 	};
-	struct Rect : Shape
+	struct Rect : public Shape
 	{
 		Point p1, p2;
 		Colour oc, fc;
@@ -118,7 +117,7 @@ public:
 	void setId(int _id);
 	int getId() { return id; }
 	bool isInitialized() { return _initialized; }
-	void draw();
+	void draw(sf::RenderWindow* window);
 	//void parseLine(std::string & _input);
 
 	void execute();

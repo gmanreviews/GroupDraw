@@ -11,7 +11,8 @@ RakNetClient::RakNetClient()
     : m_peer(RakNet::RakPeerInterface::GetInstance()), 
 	  m_serverAddress(new RakNet::SystemAddress()), 
 	  m_serverGUID(new RakNet::RakNetGUID()), 
-	  m_stream(new RakNet::BitStream())
+	  m_stream(new RakNet::BitStream()),
+      window(new sf::RenderWindow())
 {
 	window->create(sf::VideoMode(800, 600), "Chat");
 }
@@ -154,10 +155,7 @@ void RakNetClient::ListenServer() {
 				command::Rect* rect = (command::Rect*)packet->data;
 				bsIn.Read(*rect);
 				cmd->setShapeData(rect);
-				cmd->draw();
-				//command::execute();
-				
-
+				cmd->draw(window);
 				std::cout << "Got Command to draw RECT" << std::endl;
 				//done = true;
 			}

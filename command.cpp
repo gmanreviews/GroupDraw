@@ -73,12 +73,24 @@ command::~command()
 	_definedShape = NULL;*/
 }
 
-void command::draw()
+void command::draw(sf::RenderWindow* window)
 {
+
+	command::Rect* rect;
+	command::SPoint* point;
+	command::Triangle* triangle;
+	command::Line* line;
+	command::Circle* circle;
+
 	switch (_shapeType)
 	{
 	case command::Shapes::RECT:
-
+		{
+			sf::RectangleShape rect;
+			//HOW DO I FORCE IT TO KNOW IT"S A RECT AND NOT A SHAPE
+			
+			//rect =  (command::RECT*) _definedShape;
+		}
 		break;
 	default:
 		break;
