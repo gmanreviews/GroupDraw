@@ -154,7 +154,9 @@ void RakNetClient::ListenServer() {
 				//command::Rect* rect = new command::Shape(command::Shape::RECT);
 				command::Rect* rect = (command::Rect*)packet->data;
 				bsIn.Read(*rect);
-				cmd->setShapeData(rect);
+				cmd->setShapeType(command::RECT);
+				//cmd->setShapeData(rect);
+				cmd->setRectData(rect);
 				cmd->draw(window);
 				std::cout << "Got Command to draw RECT" << std::endl;
 				//done = true;

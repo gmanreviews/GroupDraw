@@ -76,17 +76,27 @@ command::~command()
 void command::draw(sf::RenderWindow* window)
 {
 
-	command::Rect* rect;
+	/*command::Rect* rect;
 	command::SPoint* point;
 	command::Triangle* triangle;
 	command::Line* line;
-	command::Circle* circle;
+	command::Circle* circle;*/
 
 	switch (_shapeType)
 	{
 	case command::Shapes::RECT:
 		{
 			sf::RectangleShape sfmlrect;
+			sf::Color fc(_rect->fc.r, _rect->fc.g, _rect->fc.b);
+			sfmlrect.setFillColor(fc);
+			sf::Vector2f pos(_rect->p1.x, _rect->p1.y);
+			sfmlrect.setPosition(pos);
+
+			window->draw(sfmlrect);
+
+
+
+
 			//rect = _definedShape;
 			//HOW DO I FORCE IT TO KNOW IT"S A RECT AND NOT A SHAPE
 			
@@ -139,6 +149,13 @@ void command::setShapeType(Shapes _shape)
 void command::setCommandType(Comm _command)
 {
 	_commandType = _command;
+	_initialized = true;
+}
+
+
+void command::setRectData(Rect* _rectData)
+{
+	_rect = _rectData;
 	_initialized = true;
 }
 

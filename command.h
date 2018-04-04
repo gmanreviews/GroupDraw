@@ -112,6 +112,7 @@ public:
 	void setCommandType(Comm _command);
 	Comm getCommandType();
 	void setShapeData(Shape* _shapedata);
+	void setRectData(Rect* _rectData);
 	Shape *getShapeData();
 	void setId(int _id);
 	int getId() { return id; }
@@ -130,6 +131,7 @@ private :
 	Comm _commandType = command::Comm::NONE;
 	Shapes _shapeType = command::Shapes::NONE_SHAPE;
 	Shape *_definedShape;
+	Rect * _rect;
 
 };
 
