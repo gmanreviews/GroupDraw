@@ -8,8 +8,12 @@
 #include <iostream>
 
 RakNetClient::RakNetClient() 
-    : m_peer(RakNet::RakPeerInterface::GetInstance()), m_serverAddress(new RakNet::SystemAddress()), m_serverGUID(new RakNet::RakNetGUID()), m_stream(new RakNet::BitStream())
+    : m_peer(RakNet::RakPeerInterface::GetInstance()), 
+	  m_serverAddress(new RakNet::SystemAddress()), 
+	  m_serverGUID(new RakNet::RakNetGUID()), 
+	  m_stream(new RakNet::BitStream())
 {
+	window->create(sf::VideoMode(800, 600), "Chat");
 }
 
 
@@ -18,6 +22,10 @@ RakNetClient::~RakNetClient()
     if(m_peer != NULL) {
         RakNet::RakPeerInterface::DestroyInstance(m_peer);
     }
+	if (window != nullptr)
+	{
+		delete(window);
+	}
 }
 
 //Returns true if the server is started.

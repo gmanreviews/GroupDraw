@@ -4,6 +4,7 @@
 #include <string>
 #include "../sharedContent.h"
 #include "../command.h"
+#include "SFML\Graphics.hpp"
 
 namespace RakNet {
     struct Packet;
@@ -43,6 +44,7 @@ private:
     RakNet::SystemAddress *m_serverAddress;
 	RakNet::BitStream *m_stream;
 	RakNet::Packet *packet;
+	sf::RenderWindow *window;
 	//RakNet::SystemAddress address;
 };
 

@@ -77,7 +77,9 @@ void command::draw()
 {
 	switch (_shapeType)
 	{
-	
+	case command::Shapes::RECT:
+
+		break;
 	default:
 		break;
 	}
