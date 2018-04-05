@@ -15,6 +15,7 @@ RakNetClient::RakNetClient()
       window(new sf::RenderWindow())
 {
 	window->create(sf::VideoMode(800, 600), "Chat");
+	window->display();
 }
 
 
@@ -188,6 +189,7 @@ void RakNetClient::ListenServer() {
 
 
 		delete(cmd);
+		//window->display();
 		//Keep things responsive.
 		//RakSleep(50);
 	//} //while(!done)

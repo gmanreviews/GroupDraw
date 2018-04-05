@@ -91,16 +91,11 @@ void command::draw(sf::RenderWindow* window)
 			sfmlrect.setFillColor(fc);
 			sf::Vector2f pos(_rect->p1.x, _rect->p1.y);
 			sfmlrect.setPosition(pos);
+			sf::Vector2f size(_rect->p2.x, _rect->p2.y);
+			sfmlrect.setSize(size);
 
 			window->draw(sfmlrect);
-
-
-
-
-			//rect = _definedShape;
-			//HOW DO I FORCE IT TO KNOW IT"S A RECT AND NOT A SHAPE
-			
-			//rect =  (command::RECT*) _definedShape;
+			window->display();
 		}
 		break;
 	default:
